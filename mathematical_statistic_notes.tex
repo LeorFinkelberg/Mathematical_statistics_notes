@@ -277,6 +277,67 @@ $$
 	\mathbf{D} T_n = \dfrac{3}{2}n(n-1)(n-2)\Bigg[ \dfrac{5}{2592}(n - 3)(n - 4) + \dfrac{7}{432}(n - 3) + \dfrac{1}{48} \Bigg].
 \end{align*}
 
+\section{Ковариация и корреляция}
+
+Случайные величины $ X $ и $ Y $ называют независимыми, если их совместная плотность $ f_{XY}(x, y) $ факторизуется, то есть для нее выполняется следующее равенство \cite[\strbook{29}]{shulenin:param}
+\begin{align*}
+	f_{XY}(x, y) = f_X(x) f_Y(y)
+\end{align*}
+
+Факт \emph{независимости} случайных величин $ X $, $ Y $  и <<силу>> (или <<тесноту>>) их связи описывают с помощью таких числовых характеристик, как \textbf{ковариация} $ cov(X, Y) $ и \textbf{коэффициент корреляции} $ \rho_{XY} $.
+
+Ковариация (корреляционный момент) двух случайных величин $ X $ и $ Y $ определяется в виде
+\begin{align*}
+	cov(X, Y) = \mathbf{E}[ (X - \mathbf{E}X)( Y - \mathbf{E}Y) ] = \mathbf{E}(XY) - \mathbf{E}X \mathbf{E}Y,
+\end{align*}
+где $ \mathbf{E}X $ и $ \mathbf{E}Y $ -- математические ожидания случайных величин $ X $ и $ Y $, а $ \mathbf{E}(XY) $ -- математическое ожидание производения случайных величин $ X $ и $ Y $, вычисляемое по формуле
+\begin{align*}
+	\mathbf{E}(XY)  = \int\limits_{-\infty}^{+\infty} \int\limits_{-\infty}^{+\infty} xy f_{XY}(x, y) dx dy.
+\end{align*}
+
+Отсюда следует формула для математического ожидания от произведения в общем случае зависимых СВ
+\begin{align*}
+	 \mathbf{E}(XY) = \mathbf{E}X \, \mathbf{E}Y + cov(X, Y)
+\end{align*}
+
+В частном случае независимых СВ
+\begin{align*}
+	\mathbf{E}(XY) = \mathbf{E}X \, \mathbf{E}Y
+\end{align*}
+
+Отметим, что ковариация случайной величины $ X $ с самой собой равна дисперсии, то есть $ cov(X, X) = \mathbf{D}X $. Отметим также, что если СВ $ X $ и $ Y $ \emph{независимые}, то ковариация $ cov(X, Y) = 0 $ \cite[\strbook{29}]{shulenin:param}. Это следует из того, что для независмых СВ $ f_{XY}(x, y) = f_X(x) f_Y(y) $. Тогда
+\begin{multline*}
+	 cov(X, Y) = \mathbf{E}(XY) - \mathbf{E}X \mathbf{E}Y = \int\limits_{-\infty}^{+\infty} \int\limits_{-\infty}^{+\infty} xy f_{XY}(x, y) dx dy - \mathbf{E}X \mathbf{E}Y =...\\ ...=\underbrace{\int\limits_{-\infty}^{+\infty} x f_{X}(x) dx}_{\mathbf{E}X} \underbrace{\int\limits_{-\infty}^{+\infty} y f_{Y}(y) dy}_{\mathbf{E}Y} - \mathbf{E}X \mathbf{E}Y = 0
+\end{multline*}
+
+Коэффициентом корреляции СВ $ X $ и $ Y $ называют число $ \rho_{XY} $, которые вычисляют по формулы
+\begin{align*}
+	\rho_{X, Y} = \dfrac{ cov(X, Y) }{ \sigma_X \sigma_Y },
+\end{align*}
+и если $ \rho_{XY} = 0 $, то СВ $ X $ и $ Y $ называют \emph{некорреллированными}.
+
+Отметим, что понятия \emph{независимости} и \emph{некоррелированости} не являются тождественными \cite[\strbook{30}]{shulenin:param}. Из независимости СВ $ X $ и $ Y $, то есть из равенства $ cov(X, Y) = 0 $, следует некоррелированность, то есть $ \rho_{X, Y} = 0$.
+
+Обратное утверждение в общем случае неверно, исключение составляет, например, гауссовский случай, для которого из некоррелированности следует независимость.
+
+Рассмотрим гауссовский случай, то есть предполагаем, что $ L(X, Y) = NN(a_X, a_Y, \sigma_X^2, \sigma_Y^2, \rho) $. Эта запись означает, что двумерная СВ $ Z = (X, Y) $ имеет двумерное нормальное распределение вероятностей с плотностью \cite[\strbook{46}]{shulenin:param}
+\begin{multline*}
+	f_{XY}(x, y) = \dfrac{1}{ 2 \pi \sigma_X\sigma_Y \sqrt{1 - \rho^2}} \times \ldots\\
+	\ldots \times \exp \Bigg( - \dfrac{1}{ 2(1 - \rho^2) }  \bigg[ \bigg( \dfrac{x - a_X}{\sigma_X} \bigg)^2 - 2 \rho \bigg( \dfrac{x - a_X}{\sigma_X} \bigg) \bigg( \dfrac{y - a_Y}{\sigma_Y} \bigg) + \bigg( \dfrac{x - a_Y}{\sigma_Y} \bigg)^2 \bigg] \Bigg),
+\end{multline*}
+где $ a_x = \mathbf{E}X $, $ a_Y = \mathbf{E}Y $, $ \sigma_X^2 = \mathbf{D}X $, $ \sigma_Y^2 = \mathbf{D}Y $ и $ \rho $ -- коээфициент корреляции.
+
+Пусть СВ $ X $ и $ Y $ некоррелированы, т.е. $ \rho_{X, Y} = 0 $. Тогда выполняется равенство
+\begin{align*}
+	f_{XY}(x, y) = \dfrac{ 1 }{ \sigma_X \sqrt{2 \pi} } \exp \Bigg( - \dfrac{1}{2} \bigg( \dfrac{x - a_X}{\sigma_X} \bigg)^2 \Bigg) \dfrac{ 1 }{ \sigma_Y \sqrt{2 \pi} } \exp \Bigg( - \dfrac{1}{2} \bigg( \dfrac{y - a_Y}{\sigma_Y} \bigg)^2 \Bigg) = f_X(x) \, f_Y(y),
+\end{align*}
+из которого следует независимость СВ $ X $ и $ Y $.
+
+
+
+
+
+
 
 
 % Источники в "Газовой промышленности" нумеруются по мере упоминания 
@@ -286,6 +347,8 @@ $$
 	\bibitem{lagutin:2009}{\emph{Лагутин М.Б.} Наглядная математическая статистика. -- М.: БИНОМ, 2009.~-- 472~с. }
 	
 	\bibitem{kobzar:2012}{\emph{Кобзарь А.И.} Прикладная математическая статистика. Для инженеров и научных работников. -- М.: ФИЗМАТЛИТ, 2012.~-- 816~с. }
+	
+	\bibitem{shulenin:param}{\emph{Шуленин В.П.} Математическая статистика. Ч.1. Параметрическая статистика. -- Томск. Изд-во НТЛ, 2012. -- 540 с.}
 \end{thebibliography}
 
 \end{document}
